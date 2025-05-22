@@ -1,10 +1,9 @@
-from models.coffee import Coffee
-from models.customer import Customer
-from models.order import Order
-
+from models.base import Base , engine
 def setup_database():
-    Customer.create_table()
-    Coffee.create_table()
+    # create all tables in db via the engine 
+    Base.metadata.create_all(engine)
+    # Customer.create_table()
+    # Coffee.create_table()
     # Order.create_table()
     
 if __name__ == "__main__":

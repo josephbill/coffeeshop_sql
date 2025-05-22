@@ -39,7 +39,7 @@ class Order:
 
     @customer.setter
     def customer(self, value):
-        from models.customer import Customer
+        from models import Customer
         """
         Setter for customer property with validation.
         
@@ -60,7 +60,7 @@ class Order:
 
     @coffee.setter
     def coffee(self, value):
-        from models.coffee import Coffee
+        from models import Coffee
         """
         Setter for coffee property with validation.
         

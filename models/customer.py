@@ -67,7 +67,7 @@ class Customer:
         return list({order.coffee for order in self._orders})
 
     def create_order(self, coffee, price):
-        from models.order import Order
+        from models import Order
         """
         Create and associate a new order for this customer.
         
@@ -87,7 +87,7 @@ class Customer:
 
     @classmethod
     def most_aficionado(cls, coffee):
-        from models.coffee import Coffee
+        from models import Coffee
         """
         Find the customer who spent the most on a specific coffee.
         

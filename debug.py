@@ -7,30 +7,48 @@ Demonstrates:
 - Method functionality
 """
 
-from models.customer import Customer
-from models.coffee import Coffee
-from models.order import Order
+from models import Customer, Coffee, Order
 from database_setup import setup_database
+from models.base import Session
 
 def debug():
     # set up database tables
     setup_database() 
+    # create a session 
+    session = Session() # session object 
+    # cover session methods in sqlalchemy 
     """
     Main debug function to demonstrate model functionality.
     """
     print("=== Creating Customers ===")
     alice = Customer("Alice")
     bob = Customer("Bob")
+    session.add_all([alice, bob])
+    session.commit()
     print(f"Created customers: {alice.name}, {bob.name}\n")
     
     print("=== Creating Coffees ===")
     latte = Coffee("Latte")
-    latte.save()
+    # latte.save()
     espresso = Coffee("Espresso")
-    espresso.save()
+    # espresso.save()
     cappuccino = Coffee("Cappuccino")
-    cappuccino.save()
+    # cappuccino.save()
+    session.add_all([latte, espresso, cappuccino])
+    session.commit()
     print(f"Created coffees: {latte.name}, {espresso.name}, {cappuccino.name}\n")
+    
+    # create an order 
+    order1 = Order(alice, latte, 4.5)
+    order2 = Order(bob, espresso, 10.00)
+    session.add_all([order1, order2])
+    session.commit()
+    
+    # test some relationship 
+    # print(f"Alice's coffee: {[coffee.name for coffee in alice.coffees()]}")
+    
+    session.close()
+    
     
     # print("=== Creating Orders ===")
     # order1 = Order(alice, latte, 4.5)
