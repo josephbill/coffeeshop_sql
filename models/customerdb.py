@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer , String , DateTime
 from sqlalchemy.orm import relationship
 from .base import Base 
+from datetime import datetime 
 class Customer(Base):
     # optional define the tablename
     __tablename__ = "customers"
@@ -12,7 +13,7 @@ class Customer(Base):
     # sqlalchemy constraint attributes i.e. primary_key , nullable , unique , default
     id = Column(Integer, primary_key = True)
     name = Column(String(15), nullable= False)
-    created_at = Column(DateTime, default=DateTime.now)
+    created_at = Column(DateTime, default=datetime.utcnow)
     
     # customer has a relationship with orders , one customer can have many orders
     # the reference variable is the name of the class to relate with in a plural format 
